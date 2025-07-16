@@ -1,5 +1,17 @@
 # malioj-frontend
 
+## version
+
+```
+node -v
+18.16.0
+```
+
+```
+npm -v
+9.5.1
+```
+
 ## Project setup
 ```
 npm install
