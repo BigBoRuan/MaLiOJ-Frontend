@@ -47,7 +47,6 @@ const visibleRoutes = computed(() => {
     if (item.meta?.hideInMenu) {
       return false;
     }
-    console.log(item.meta);
     // 根据权限过滤菜单
     if (!checkAccess(store.state.user.loginUser, item.meta?.access as string)) {
       return false;
