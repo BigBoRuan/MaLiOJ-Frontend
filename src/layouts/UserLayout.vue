@@ -1,8 +1,9 @@
 <template>
-  <div id="BasicLayout">
+  <div id="userLayout">
     <a-layout style="min-height: 100vh">
       <a-layout-header class="header">
-        <GlobalHeader />
+        <img src="@/assets/oj-logo.jpg" class="logo" />
+        <div>码粒在线OJ</div>
       </a-layout-header>
       <a-layout-content class="content">
         <router-view />
@@ -17,22 +18,27 @@
 </template>
 
 <style scoped>
-#BasicLayout {
+#userLayout {
+  text-align: center;
+}
+#userLayout .logo {
+  width: 64px;
+  height: 64px;
+}
+#userLayout {
 }
 
 .header {
+  margin-top: 16px;
   margin-bottom: 16px;
-  box-shadow: #eee 1px 1px 5px;
 }
 
 .content {
-  background: linear-gradient(to right, #eee, #fff);
   margin-bottom: 16px;
   padding: 20px;
 }
 
 .footer {
-  background: #efefef;
   padding: 16px;
   position: sticky;
   bottom: 0;

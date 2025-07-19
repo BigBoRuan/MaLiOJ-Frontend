@@ -24,7 +24,7 @@
       </div>
     </a-col>
     <a-col flex="100px">
-      <div>{{ store.state.user?.loginUser?.username ?? "未登录" }}</div>
+      <div>{{ store.state.user?.loginUser?.userName ?? "未登录" }}</div>
     </a-col>
   </a-row>
 </template>
@@ -35,11 +35,13 @@ import { useRouter } from "vue-router";
 import { computed, ref } from "vue";
 import { useStore } from "vuex";
 import checkAccess from "@/access/checkAccess";
-import ACCESSE_NUM from "@/access/accessEnum";
 
 const router = useRouter();
 // 默认是主页
 const selectedKeys = ref(["/"]);
+router.afterEach((to, from, failure) => {
+  selectedKeys.value = [to.path];
+});
 const store = useStore();
 
 const visibleRoutes = computed(() => {
@@ -56,22 +58,17 @@ const visibleRoutes = computed(() => {
 });
 
 // 路由跳转 更新选择的菜单项
-router.afterEach((to, from, failure) => {
-  selectedKeys.value = [to.path];
-});
-
-setTimeout(() => {
-  store.dispatch("user/getLoginUser", {
-    username: "阮其昌管理员",
-    userRole: ACCESSE_NUM.ADMIN,
-  });
-}, 3000);
 
 const doMenuClick = (key: string) => {
   router.push({
     path: key,
   });
 };
+// setTimeout(() => {
+//   store.dispatch("user/getLoginUser", {
+//     userName: "其屿",
+//   });
+// }, 3000);
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

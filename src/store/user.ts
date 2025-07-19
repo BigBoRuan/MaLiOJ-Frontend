@@ -4,15 +4,16 @@ import { UserControllerService } from "../../generated";
 
 export default {
   namespaced: true,
-  state: {
+  state: () => ({
     loginUser: {
-      username: "未登录",
+      userName: "未登录",
     },
-  },
+  }),
   actions: {
     async getLoginUser({ commit, state }, payload) {
+      // 从远程请求获取登录信息
       const res = await UserControllerService.getLoginUserUsingGet();
-      if (res === 0) {
+      if (res.code === 0) {
         commit("updateUser", res.data);
       } else {
         commit("updateUser", {
@@ -22,8 +23,9 @@ export default {
       }
     },
   },
+
   mutations: {
-    updateUser(state, payload) {
+    async updateUser(state, payload) {
       state.loginUser = payload;
     },
   },
